@@ -4,7 +4,7 @@ Little christmas coding excercise, see all info here: [https://adventofcode.com/
 
 ## Keeping Track of Days
 - [x] day 1: ~35 mins incl. setup
-- [ ] day 2
+- [x] day 2: ~40 mins (incl. refactoring)
 - [ ] day 3
 - [ ] day 4
 - [ ] day 5
