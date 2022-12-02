@@ -3,8 +3,8 @@
 Little christmas coding excercise, see all info here: [https://adventofcode.com/](https://adventofcode.com/)
 
 ## Keeping Track of Days
-- [x] day 1: ~35 mins incl. setup
-- [x] day 2: ~65 mins (incl. part2 and refactoring)
+- [x] day 1: ✅
+- [x] day 2: ✅
 - [ ] day 3
 - [ ] day 4
 - [ ] day 5
