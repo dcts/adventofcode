@@ -3,8 +3,8 @@
 Little christmas coding excercise, see all info here: [https://adventofcode.com/](https://adventofcode.com/)
 
 ## Keeping Track of Days
-- [x] day 1: ✅
-- [x] day 2: ✅
+- [x] day 1: ⭐️⭐️
+- [x] day 2: ⭐️⭐️
 - [ ] day 3
 - [ ] day 4
 - [ ] day 5
