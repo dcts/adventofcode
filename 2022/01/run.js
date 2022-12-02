@@ -1,4 +1,4 @@
-const { input } = require('./input');
+const { input } = require('./input.js');
 
 // HELPER FUNCTION: compute calories for 1 elve
 function computeElveCalories(elveInput) {
@@ -16,11 +16,13 @@ function topElveCalories(input) {
 }
 
 // PART 2
-function top3ElvesCalories(input) {
+function topThreeElvesCalories(input) {
+  const n = 3;
   const calories = input.map(elveInput => computeElveCalories(elveInput));
-  return calories.sort((a,b) => b - a).slice(0, 3).reduce((a,b) => a + b, 0);
+  return calories.sort((a,b) => b - a).slice(0, n).reduce((a,b) => a + b, 0);
 }
 
-console.log("Run day1 algorithms...");
-console.log("part_one: " + topElveCalories(input));
-console.log("part_two: " + top3ElvesCalories(input));
+console.log("=== AdventOfCode 2022-day1 ===");
+console.log("part_one: Top Elve calories    = " + topElveCalories(input));
+console.log("part_two: Top 3 Elves calories = " + topThreeElvesCalories(input));
+console.log("\n\n");
