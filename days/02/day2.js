@@ -49,22 +49,67 @@ function transformChoice(input) {
   throw new Error(`Invalid Input. Allower: A,B,C,X,Y,Z. Got: ${input}`);
 }
 
-// MAIN ALGORITHM
-// 1. load input data as string
-// 2. split by newline
-// 3. init total score
-// 4. iterate over games and add game score
-// 5. return totalScore
+// HELPER FUNCTION: returns yourChoice, given the opponents choice and the required gameResult
+// gameresults:
+// X => loose
+// Y => draw
+// Z => win
+function getTargetChoice(opponentChoice, targetGameResult) {
+  if (targetGameResult === "X") { // loose
+    return {
+      "R": "S",
+      "P": "R",
+      "S": "P",
+    }[opponentChoice];
+
+  } else if (targetGameResult === "Y") { // draw
+    return opponentChoice;
+
+  } else if (targetGameResult === "Z") { // win
+    return {
+      "R": "P",
+      "P": "S",
+      "S": "R",
+    }[opponentChoice];
+  }
+}
+
 (async () => {
+  // load input data
   const input = await getInput(); 
   const games = input.split("\n");
-  let totalScore = 0;
 
+  // MAIN ALGORITHM Part 1
+  // 1. load input data as string
+  // 2. split by newline
+  // 3. init total score
+  // 4. iterate over games and add game score
+  // 5. return totalScore
+  console.log("Running algorithm part1...");
+  let totalScore = 0;
   for (let i = 0; i < games.length; i++) { 
     const game = games[i];
     const [opponentChoice, yourChoice] = game.split(" ").map(choice => transformChoice(choice));
     totalScore += computeGameScore(opponentChoice, yourChoice);
   }
+  console.log("TotalScore: " + totalScore);
 
+  // MAIN ALGORITHM Part 2
+  // 1. load input data as string
+  // 2. split by newline
+  // 3. init total score
+  // 4. iterate over games
+  //    => get targetChoice
+  //    => calculate score and add to total score
+  // 5. return totalScore
+  console.log("\nRunning algorithm part1...");
+  totalScore = 0;
+  for (let i = 0; i < games.length; i++) { 
+    const game = games[i];
+    const gameInputs = game.split(" ");
+    const opponentChoice = transformChoice(gameInputs[0]);
+    const yourChoice = getTargetChoice(opponentChoice, gameInputs[1]);
+    totalScore += computeGameScore(opponentChoice, yourChoice);
+  }
   console.log("TotalScore: " + totalScore);
 })();
