@@ -1,0 +1,14 @@
+{
+  "name": "adventofcode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "day1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "d1": "node days/day1.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {}
+}
