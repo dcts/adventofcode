@@ -3,7 +3,7 @@ const fs = require("fs/promises");
 
 // HELPER FUNCTION: get input from file
 async function getInput() {
-  return await fs.readFile('/home/dcts/code/adventofcode/days/day1_input', { encoding: 'utf8' });
+  return await fs.readFile('/home/dcts/code/adventofcode/days/01/day1_input', { encoding: 'utf8' });
 }
 
 // HELPER FUNCTION: compute calories for 1 elve helper
