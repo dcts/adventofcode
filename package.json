@@ -2,11 +2,11 @@
   "name": "adventofcode",
   "version": "1.0.0",
   "description": "",
-  "main": "day1.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "d1": "node days/01/day1.js",
-    "d2": "node days/02/day2.js"
+    "d1": "node 2022/01/run.js",
+    "d2": "node 2022/02/run.js",
+    "d3": "node 2022/03/run.js"
   },
   "keywords": [],
   "author": "",
