@@ -5,7 +5,7 @@ Little christmas coding excercise, see all info here: [https://adventofcode.com/
 ## Keeping Track of Days
 - [x] day 1: ⭐️⭐️
 - [x] day 2: ⭐️⭐️
-- [ ] day 3
+- [x] day 3: ⭐️⭐️
 - [ ] day 4
 - [ ] day 5
 - [ ] day 6
