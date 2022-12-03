@@ -4,8 +4,8 @@ Little christmas coding excercise, see all info here: [https://adventofcode.com/
 
 ## Keeping Track of Days
 - [x] [day 1](2022/01): ⭐️⭐️
-- [x] day 2: ⭐️⭐️
-- [x] day 3: ⭐️⭐️
+- [x] [day 2](2022/02): ⭐️⭐️
+- [x] [day 3](2022/03): ⭐️⭐️
 - [ ] day 4
 - [ ] day 5
 - [ ] day 6
