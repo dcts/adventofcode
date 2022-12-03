@@ -42,6 +42,8 @@ function totalGameScores(input, game_score_lookup) {
 
 
 console.log("=== AdventOfCode 2022-day2 ===");
-console.log("part_one: total score = " + totalGameScores(input, GAME_SCORE_LOOKUP));
-console.log("part_two: total score = " + totalGameScores(input, GAME_SCORE_LOOKUP_2));
+console.log("\npart_one: total score:")
+console.log(totalGameScores(input, GAME_SCORE_LOOKUP));
+console.log("\npart_two: total score:")
+console.log(totalGameScores(input, GAME_SCORE_LOOKUP_2));
 console.log("\n\n");

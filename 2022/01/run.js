@@ -23,6 +23,8 @@ function topThreeElvesCalories(input) {
 }
 
 console.log("=== AdventOfCode 2022-day1 ===");
-console.log("part_one: Top Elve calories    = " + topElveCalories(input));
-console.log("part_two: Top 3 Elves calories = " + topThreeElvesCalories(input));
+console.log("\npart_one: Top Elve calories:")
+console.log(topElveCalories(input));
+console.log("\npart_two: Top 3 Elves calories:")
+console.log(topThreeElvesCalories(input));
 console.log("\n\n");

@@ -2,33 +2,17 @@ const { input } = require("./input.js");
 
 // HELPER FUNCTION
 // returns 2 arrays of strings containing items
-// e.g. "abczuh" => [["a","b","c"],["z","u","h"]]
+// e.g. "abczuh" => [["abc"],["zuh"]]
 function splitRucksack(items) {
   return [
-    items.slice(0, items.length / 2).split(""),
-    items.slice(items.length / 2, items.length).split(""),
+    items.slice(0, items.length / 2),
+    items.slice(items.length / 2, items.length),
   ];
-}
-
-// HELPER FUNCTION: find same character in linear time
-function findSameItem(items) {
-  // split rucksack
-  const [one, two] = splitRucksack(items);
-  // create hashset for each compartment
-  const [mapOne, mapTwo] = [{}, {}];
-  one.forEach(item => mapOne[item] = true);
-  two.forEach(item => mapTwo[item] = true);
-  // find same item
-  const itemMap = {};
-  Object.keys(mapOne).forEach(item => itemMap[item] ? itemMap[item] += 1 : itemMap[item] = 1);
-  Object.keys(mapTwo).forEach(item => itemMap[item] ? itemMap[item] -= 1 : itemMap[item] = -1);
-  return Object.keys(itemMap).find(key => itemMap[key] === 0);
 }
 
 function findSameItems(rucksacks) {
   const n = rucksacks.length;
-  // create hashset for each rucksack
-  const rucksackSets = [];
+  const rucksackSets = []; // create hashset for each rucksack
   rucksacks.forEach(rucksack => {
     const set = {};
     rucksack.split("").forEach(item => set[item] = true);
@@ -44,12 +28,14 @@ function findSameItems(rucksacks) {
 
 // chunkArray function taken from here:
 // https://stackoverflow.com/a/24782004
-function chunk(arr, chunkSize) {
-  if (chunkSize <= 0) throw "Invalid chunk size";
-  var R = [];
-  for (var i=0,len=arr.length; i<len; i+=chunkSize)
-    R.push(arr.slice(i,i+chunkSize));
-  return R;
+function chunk(array, size) {
+  const chunkedArr = [];
+  let index = 0;
+  while (index < array.length) {
+    chunkedArr.push(array.slice(index, size + index));
+    index += size;
+  }
+  return chunkedArr;
 }
 
 function getItemPriority(char) {
@@ -62,17 +48,23 @@ function getItemPriority(char) {
 
 // run computation part 1
 const result = input
-  .map(items => findSameItem(items))
+  .map(rucksack => findSameItems(splitRucksack(rucksack)))
   .map(sameItem => getItemPriority(sameItem))
   .reduce((a,b) => a+b, 0);
-console.log(result);
 
 // run computation part 2
 const result2 = chunk(input, 3)
   .map(rucksacks => findSameItems(rucksacks))
   .map(sameItem => getItemPriority(sameItem))
   .reduce((a,b) => a+b, 0);
+
+console.log("=== AdventOfCode 2022-day2 ===");
+console.log("\npart_one:");
+console.log(result);
+console.log("\npart_two: ")
 console.log(result2);
+console.log("\n\n");
+
 
 
 /*
