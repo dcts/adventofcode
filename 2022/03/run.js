@@ -25,6 +25,33 @@ function findSameItem(items) {
   return Object.keys(itemMap).find(key => itemMap[key] === 0);
 }
 
+function findSameItems(rucksacks) {
+  const n = rucksacks.length;
+  // create hashset for each rucksack
+  const rucksackSets = [];
+  rucksacks.forEach(rucksack => {
+    const set = {};
+    rucksack.split("").forEach(item => set[item] = true);
+    rucksackSets.push(set);
+  })
+  // find same item
+  const itemMap = {};
+  rucksackSets.forEach(rucksackSet => {
+    Object.keys(rucksackSet).forEach(item => itemMap[item] ? itemMap[item] += 1 : itemMap[item] = 1)
+  })
+  return Object.keys(itemMap).find(key => itemMap[key] === n);
+}
+
+// chunkArray function taken from here:
+// https://stackoverflow.com/a/24782004
+function chunk(arr, chunkSize) {
+  if (chunkSize <= 0) throw "Invalid chunk size";
+  var R = [];
+  for (var i=0,len=arr.length; i<len; i+=chunkSize)
+    R.push(arr.slice(i,i+chunkSize));
+  return R;
+}
+
 function getItemPriority(char) {
   if (char.toUpperCase() === char) { // uppercase
     return char.charCodeAt(0) - 38; // "A" is ASCII 65, but we need it to be 27: hence -38
@@ -40,6 +67,12 @@ const result = input
   .reduce((a,b) => a+b, 0);
 console.log(result);
 
+// run computation part 2
+const result2 = chunk(input, 3)
+  .map(rucksacks => findSameItems(rucksacks))
+  .map(sameItem => getItemPriority(sameItem))
+  .reduce((a,b) => a+b, 0);
+console.log(result2);
 
 
 /*
