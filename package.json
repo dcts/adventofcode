@@ -6,7 +6,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "d1": "node 2022/01/run.js",
     "d2": "node 2022/02/run.js",
-    "d3": "node 2022/03/run.js"
+    "d3": "node 2022/03/run.js",
+    "d4": "node 2022/04/run.js"
   },
   "keywords": [],
   "author": "",

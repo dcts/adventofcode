@@ -58,7 +58,7 @@ const result2 = chunk(input, 3)
   .map(sameItem => getItemPriority(sameItem))
   .reduce((a,b) => a+b, 0);
 
-console.log("=== AdventOfCode 2022-day2 ===");
+console.log("=== AdventOfCode 2022-day3 ===");
 console.log("\npart_one:");
 console.log(result);
 console.log("\npart_two: ")
