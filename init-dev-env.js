@@ -1,6 +1,7 @@
-const day = "04";
+const year = "2021";
+const day = "01";
 
-const { input } = require(`./2022/${day}/input.js`);
+const { input } = require(`./${year}/${day}/input.js`);
 
 i2 = input.split("\n").map(line => {
   return line.split(",").map(numStr => Number(numStr));
