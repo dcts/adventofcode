@@ -1,6 +1,15 @@
-// PART 1
 const { getInput } = require("./input.js");
 
+function showTopOfStacks(stacks) {
+  const topOfStacks = [];
+  const n = Object.keys(stacks).length;
+  for (let i=1; i<=n; i++) {
+    topOfStacks.push(stacks[i].pop());
+  }
+  return topOfStacks.join("");
+}
+
+// PART 1
 function runPart1() {
   const {stacks, moves} = getInput();
 
@@ -13,13 +22,9 @@ function runPart1() {
       }
     }
   })
-  const result = [];
-  const n = Object.keys(stacks).length;
-  for (let i=1; i<=n; i++) {
-    result.push(stacks[i].pop());
-  }
-  return result.join("");
+  return showTopOfStacks(stacks);
 }
+
 
 
 // PART 2
@@ -37,12 +42,7 @@ function runPart2() {
     }
     stacks[to] = stacks[to].concat(elements);
   })
-  const result = [];
-  const n = Object.keys(stacks).length;
-  for (let i=1; i<=n; i++) {
-    result.push(stacks[i].pop());
-  }
-  return result.join("");
+  return showTopOfStacks(stacks);
 }
 
 
