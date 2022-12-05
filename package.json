@@ -8,6 +8,7 @@
     "d3": "node 2022/03/run.js",
     "d2": "node 2022/02/run.js",
     "d1": "node 2022/01/run.js",
+    "2021d4": "node 2021/04/run.js",
     "2021d3": "node 2021/03/run.js",
     "2021d2": "node 2021/02/run.js",
     "2021d1": "node 2021/01/run.js"
