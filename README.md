@@ -10,8 +10,8 @@ This is a repo containing my solutions to [Eric Wastl's](http://was.tl/) **Adven
 - [x] [day 1](2022/01): ⭐️⭐️
 - [x] [day 2](2022/02): ⭐️⭐️
 - [x] [day 3](2022/03): ⭐️⭐️
-- [x] [day 4](2022/04): 
-- [ ] day 5
+- [x] [day 4](2022/04): ⭐️⭐️
+- [x] [day 5](2022/05): ⭐️⭐️
 - [ ] day 6
 - [ ] day 7
 - [ ] day 8
