@@ -56,9 +56,9 @@ const oxygenRating = bin2dec(findRating(input, "oxygen").join(""));
 const co2Rating = bin2dec(findRating(input, "CO2").join(""));
 const result2 = oxygenRating * co2Rating;
 
-console.log("=== AdventOfCode 2022-day??? ==="); // @todo insert day
+console.log("=== AdventOfCode 2021-day3 ===");
 console.log("\npart_one:");
-console.log(result); // @todo insert result part_one
-console.log("\npart_two: ")
-console.log(result2); // @todo insert result part_two
+console.log(result);
+console.log("\npart_two:")
+console.log(result2);
 console.log("\n\n");
