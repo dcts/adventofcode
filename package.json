@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "d6": "node 2022/06/run.js",
     "d5": "node 2022/05/run.js",
     "d4": "node 2022/04/run.js",
     "d3": "node 2022/03/run.js",
