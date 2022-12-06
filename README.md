@@ -12,7 +12,7 @@ This is a repo containing my solutions to [Eric Wastl's](http://was.tl/) **Adven
 - [x] [day 3](2022/03): ⭐️⭐️
 - [x] [day 4](2022/04): ⭐️⭐️
 - [x] [day 5](2022/05): ⭐️⭐️
-- [ ] day 6
+- [x] [day 6](2022/05): ⭐️⭐️
 - [ ] day 7
 - [ ] day 8
 - [ ] day 9
@@ -24,7 +24,7 @@ This is a repo containing my solutions to [Eric Wastl's](http://was.tl/) **Adven
 - [ ] day 15
 - [ ] day 16
 - [ ] day 17
-- [ ] day 18
+- [ ] da⭐️⭐️y 18
 - [ ] day 19
 - [ ] day 20
 - [ ] day 21
