@@ -30,8 +30,8 @@ function extractMoves(moveStr) {
 // HELPER FUNCTION
 // extracts stacks from raw string data
 // output is an array of array of chars.
-// each stack can be accessed by using index - 1
-// e.g. to access stack 1 use stacks[1-1]
+// each stack can be accessed by using its index
+// e.g. to access stack 0 use stacks[0]
 function extractStacks(stackStr) {
   const charMatrix = stackStr.split("\n").map(line => line.split(""));
   const rotated = rotate(charMatrix); // rotates matrix clockwise
