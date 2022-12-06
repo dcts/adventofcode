@@ -13,7 +13,8 @@ function rotate(matrix) {
 // HELPER FUNCTION
 // extracts moves from raw string data
 // e.g.           "move 4 from 2 to 1"
-// transforms to: {n: 4, from: 2, to: 1}
+// transforms to: {n: 4, from: 1, to: 0}
+// note the decreasing of the index for easy access of stacks
 function extractMoves(moveStr) {
   const extractMove = (moveStr) => {
     const [n, from, to] = moveStr.replace(/[a-zA-Z]+/g, "").trim().split("  ").map(strValue => Number(strValue));
