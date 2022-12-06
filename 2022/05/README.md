@@ -17,7 +17,7 @@ They do, however, have a drawing of the starting stacks of crates __and__ the re
         [D]    
     [N] [C]    
     [Z] [M] [P]
-    1   2   3 
+     1   2   3 
 
     move 1 from 2 to 1
     move 3 from 1 to 3
@@ -31,7 +31,7 @@ Then, the rearrangement procedure is given. In each step of the procedure, a qua
     [D]        
     [N] [C]    
     [Z] [M] [P]
-    1   2   3 
+     1   2   3 
 
 In the second step, three crates are moved from stack 1 to stack 3. Crates are moved __one at a time__, so the first crate to be moved (`D`) ends up below the second and third crates:
 
@@ -39,7 +39,7 @@ In the second step, three crates are moved from stack 1 to stack 3. Crates are m
             [N]
         [C] [D]
         [M] [P]
-    1   2   3
+     1   2   3
 
 Then, both crates are moved from stack 2 to stack 1. Again, because crates are moved __one at a time__, crate `C` ends up below crate `M`:
 
@@ -47,7 +47,7 @@ Then, both crates are moved from stack 2 to stack 1. Again, because crates are m
             [N]
     [M]     [D]
     [C]     [P]
-    1   2   3
+     1   2   3
 
 Finally, one crate is moved from stack 1 to stack 2:
 
@@ -55,7 +55,7 @@ Finally, one crate is moved from stack 1 to stack 2:
             [N]
             [D]
     [C] [M] [P]
-    1   2   3
+     1   2   3
 
 The Elves just need to know __which crate will end up on top of each stack__; in this example, the top crates are `C` in stack 1, `M` in stack 2, and `Z` in stack 3, so you should combine these together and give the Elves the message __`CMZ`__.
 
@@ -76,14 +76,14 @@ Again considering the example above, the crates begin in the same configuration:
         [D]    
     [N] [C]    
     [Z] [M] [P]
-    1   2   3 
+     1   2   3 
 
 Moving a single crate from stack 2 to stack 1 behaves the same as before:
 
     [D]        
     [N] [C]    
     [Z] [M] [P]
-    1   2   3 
+     1   2   3 
 
 However, the action of moving three crates from stack 1 to stack 3 means that those three moved crates __stay in the same order__, resulting in this new configuration:
 
@@ -91,7 +91,7 @@ However, the action of moving three crates from stack 1 to stack 3 means that th
             [N]
         [C] [Z]
         [M] [P]
-    1   2   3
+     1   2   3
 
 Next, as both crates are moved from stack 2 to stack 1, they __retain their order__ as well:
 
@@ -99,7 +99,7 @@ Next, as both crates are moved from stack 2 to stack 1, they __retain their orde
             [N]
     [C]     [Z]
     [M]     [P]
-    1   2   3
+     1   2   3
 
 Finally, a single crate is still moved from stack 1 to stack 2, but now it's crate `C` that gets moved:
 
@@ -107,7 +107,7 @@ Finally, a single crate is still moved from stack 1 to stack 2, but now it's cra
             [N]
             [Z]
     [M] [C] [P]
-    1   2   3
+     1   2   3
 
 In this example, the CrateMover 9001 has put the crates in a totally different order: __`MCD`__.
 

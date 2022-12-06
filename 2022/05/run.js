@@ -1,20 +1,15 @@
-const { getInput } = require("./input.js");
+const { input } = require("./input.js");
+const { extractInput } = require("./utils");
 
 function showTopOfStacks(stacks) {
-  const topOfStacks = [];
-  const n = Object.keys(stacks).length;
-  for (let i=1; i<=n; i++) {
-    topOfStacks.push(stacks[i][stacks[i].length-1]);
-  }
-  return topOfStacks.join("");
+  return stacks.map(arr => arr[arr.length - 1]).join("");
 }
 
 // PART 1
-function runPart1() {
-  const {stacks, moves} = getInput();
-
+function runPart1(input) {
+  const [stacks, moves] = extractInput(input);
   moves.forEach(move => {
-    const [n, from, to] = move;
+    const {n, from, to} = move;
     for (let i=0; i<n; i++) {
       const element = stacks[from].pop();
       if (element) {
@@ -25,14 +20,11 @@ function runPart1() {
   return showTopOfStacks(stacks);
 }
 
-
-
 // PART 2
-function runPart2() {
-  const {stacks, moves} = getInput();
-
+function runPart2(input) {
+  const [stacks, moves] = extractInput(input);
   moves.forEach(move => {
-    const [n, from, to] = move;
+    const {n, from, to} = move;
     const elements = [];
     for (let i=0; i<n; i++) {
       const element = stacks[from].pop();
@@ -47,10 +39,12 @@ function runPart2() {
 
 
 
+
+
 console.log("=== AdventOfCode 2022-day5 ===");
 console.log("\npart_one:");
-console.log(runPart1()); 
+console.log(runPart1(input)); 
 console.log("\npart_two: ")
-console.log(runPart2()); 
+console.log(runPart2(input)); 
 console.log("\n\n");
 
