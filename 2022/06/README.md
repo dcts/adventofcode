@@ -40,3 +40,17 @@ __How many characters need to be processed before the first start-of-packet mark
 -----------------
 
 ## --- Part Two ---
+
+Your device's communication system is correctly detecting packets, but still isn't working. It looks like it also needs to look for __messages__.
+
+A __start-of-message marker__ is just like a start-of-packet marker, except it consists of __14 distinct characters__ rather than 4.
+
+Here are the first positions of start-of-message markers for all of the above examples:
+
+- `mjqjpqmgbljsphdztnvjfqwrcgsmlb`: first marker after character __`19`__
+- `bvwbjplbgvbhsrlpgdmjqwftvncz`: first marker after character __`23`__
+- `nppdvjthqldpwncqszvftbrmjlhg`: first marker after character __`23`__
+- `nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg`: first marker after character __`29`__
+- `zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw`: first marker after character __`26`__
+
+__How many characters need to be processed before the first start-of-message marker is detected?__
