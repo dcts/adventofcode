@@ -14,12 +14,7 @@ function getInput() {
   // => to
   function extractMoves(moveStr) {
     const extractMove = (moveStr) => {
-      const arr = moveStr.replace(/[a-zA-Z]+/g, "").trim().split("  ").map(strValue => Number(strValue));
-      return {
-        n: arr[0],
-        from: arr[1],
-        to: arr[2]
-      }
+      return moveStr.replace(/[a-zA-Z]+/g, "").trim().split("  ").map(strValue => Number(strValue));
     }
     return moveStr.split("\n").map(lineStr => extractMove(lineStr));
   };

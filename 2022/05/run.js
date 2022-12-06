@@ -4,7 +4,7 @@ function showTopOfStacks(stacks) {
   const topOfStacks = [];
   const n = Object.keys(stacks).length;
   for (let i=1; i<=n; i++) {
-    topOfStacks.push(stacks[i].pop());
+    topOfStacks.push(stacks[i][stacks[i].length-1]);
   }
   return topOfStacks.join("");
 }
@@ -14,7 +14,7 @@ function runPart1() {
   const {stacks, moves} = getInput();
 
   moves.forEach(move => {
-    const {n, from, to} = move;
+    const [n, from, to] = move;
     for (let i=0; i<n; i++) {
       const element = stacks[from].pop();
       if (element) {
@@ -32,7 +32,7 @@ function runPart2() {
   const {stacks, moves} = getInput();
 
   moves.forEach(move => {
-    const {n, from, to} = move;
+    const [n, from, to] = move;
     const elements = [];
     for (let i=0; i<n; i++) {
       const element = stacks[from].pop();
