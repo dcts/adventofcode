@@ -4,7 +4,7 @@
 | ------ | ------ |
 | `????` | `????` |
 
-## --- Day <DAY_NR>: <TITLE> ---
+## --- Day <@TODO_INSERT_DAY_NR>: <@TODO_INSERT_TITLE> ---
 
 -----------------
 
