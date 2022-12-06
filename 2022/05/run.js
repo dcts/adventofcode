@@ -37,10 +37,6 @@ function runPart2(input) {
   return showTopOfStacks(stacks);
 }
 
-
-
-
-
 console.log("=== AdventOfCode 2022-day5 ===");
 console.log("\npart_one:");
 console.log(runPart1(input)); 
