@@ -12,7 +12,7 @@ input.forEach(move => {
   } else if (dir === "up") {
     depth -= value;
   }
-})
+});
 const result = position * depth;
 
 // Part 2
@@ -29,7 +29,6 @@ input.forEach(move => {
   } else if (dir === "up") {
     aim -= value;
   }
-  console.log({position, depth, aim});
 });
 const result2 = position * depth;
 
