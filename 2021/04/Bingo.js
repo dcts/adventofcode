@@ -3,6 +3,35 @@ class Bingo {
     this.numbers = numbers;
     this.boards = boards;
   }
+  run() {
+    for (let n=0; n<this.numbers.length; n++) {
+      const number = this.numbers[n];
+      for (let b=0; b<this.boards.length; b++) {
+        const score = this.boards[b].play(number);
+        if (score) {
+          return score;
+        }
+      }
+    }
+  }
+
+  findLastWinner() {
+    let lastWinner = undefined;
+    for (let n=0; n<this.numbers.length; n++) {
+      const number = this.numbers[n];
+      for (let b=0; b<this.boards.length; b++) {
+        try {
+          const score = this.boards[b].play(number);
+          if (score) {
+            lastWinner = score;
+          }
+        } catch(err) {
+          // skipping error that you cannot play when already won
+        }
+      }
+    }
+    return lastWinner;
+  }
 }
 
 class Board {
@@ -54,10 +83,13 @@ class Board {
     if (this.numAlreadyPlayed(num)) {
       throw new Error(`Cannot play already played number ${num}`);
     }
-    const {col, row} = this.board[num];
     this.playedNums[num] = true;
-    delete this.board[num];
     this.lastPlayedNumber = num;
+    if (!this.board[num]) {
+      return; // number not on baord, exit
+    }
+    const {col, row} = this.board[num];
+    delete this.board[num];
     this.score[`col${col}`] += 1;
     this.score[`row${row}`] += 1;
     if (this.hasWon()) {
