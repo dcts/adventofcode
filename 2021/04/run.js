@@ -15,5 +15,5 @@ console.log("=== AdventOfCode 2021-day4 ===");
 console.log("\npart_one:");
 console.log(result);
 console.log("\npart_two:");
-console.log(result2); 
+console.log(result2);
 console.log("\n\n");
