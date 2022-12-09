@@ -36,11 +36,11 @@ For example, suppose the Elves finish writing their items' Calories and end up w
 
 This list represents the Calories of the food carried by five Elves:
 
-*   The first Elf is carrying food with `1000`, `2000`, and `3000` Calories, a total of __`6000`__ Calories.
-*   The second Elf is carrying one food item with __`4000`__ Calories.
-*   The third Elf is carrying food with `5000` and `6000` Calories, a total of __`11000`__ Calories.
-*   The fourth Elf is carrying food with `7000`, `8000`, and `9000` Calories, a total of __`24000`__ Calories.
-*   The fifth Elf is carrying one food item with __`10000`__ Calories.
+- The first Elf is carrying food with `1000`, `2000`, and `3000` Calories, a total of __`6000`__ Calories.
+- The second Elf is carrying one food item with __`4000`__ Calories.
+- The third Elf is carrying food with `5000` and `6000` Calories, a total of __`11000`__ Calories.
+- The fourth Elf is carrying food with `7000`, `8000`, and `9000` Calories, a total of __`24000`__ Calories.
+- The fifth Elf is carrying one food item with __`10000`__ Calories.
 
 In case the Elves get hungry and need extra snacks, they need to know which Elf to ask: they'd like to know how many Calories are being carried by the Elf carrying the __most__ Calories. In the example above, this is __`24000`__ (carried by the fourth Elf).
 
