@@ -1,16 +1,23 @@
-const { Grid } = require("./Grid.js");
+const { Forest } = require("./Forest.js");
 const { input } = require("./input.js");
 
-const grid = new Grid(input);
-const totalSpots = grid.n * grid.n;
-const hiddenFromAllSidesCount = grid.hiddenFromAllSidesCount();
-const result = totalSpots - hiddenFromAllSidesCount;
+// PART 1
+const forest = new Forest(input);
+const hideScores = forest.hideScores();
+const visibleTrees = hideScores
+  .map(row => row.filter(score => score < 4).length) // find nbr of visible trees per row
+  .reduce((a,b) => a + b, 0); // sum nbr of visible trees per row to get total
 
-const result2 = grid.maxScenicScore();
+// PART 2
+function findMax(matrix) {
+  return Math.max(...matrix.map(row => Math.max(...row)));
+}
+const scenicScores = forest.scenicScores();
+const maxScenicScore = findMax(scenicScores); 
 
 console.log("=== AdventOfCode 2022-day8 ==="); 
 console.log("\npart_one:");
-console.log(result);
+console.log(visibleTrees);
 console.log("\npart_two: ");
-console.log(result2);
+console.log(maxScenicScore);
 console.log("\n\n");
