@@ -38,9 +38,8 @@ function extractText(str) {
     .split(/<code[^>]*>/gm).join("`") // code = inline codeblock
     .split("</code>").join("`")
     .split(/<span[^>]*>/gm).join("") // remove spans
-    .split("</span>").join("");
-    // .split(/<a[^>]*>/gm).join("") // remove links
-    // .split("</a>").join("");
+    .split("</span>").join("")
+    .replace(/<a.*?href="(.*?)".*?>(.*?)<\/a>/g, "[$2]($1)"); // replace <a> tags // https://stackoverflow.com/a/68782732/6272061
 }
 
 function extractCodeblock(pre) {
