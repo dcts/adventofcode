@@ -43,7 +43,9 @@ function extractText(str) {
 }
 
 function extractCodeblock(pre) {
-  return `\`\`\`\n${pre.textContent}\n\`\`\``;
+  const indendation = "    ";
+  const content = pre.textContent.trim().split("\n").join(`\n${indendation}`);
+  return `${indendation}${content}`;
 }
 
 // !!! WARNING !!!
