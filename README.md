@@ -16,7 +16,7 @@ This is a repo containing my solutions to [Eric Wastl's](http://was.tl/) **Adven
 - [x] [day 7](2022/07): ⭐️⭐️
 - [x] [day 8](2022/08): ⭐️⭐️
 - [ ] day 9
-- [ ] day 10
+- [x] [day 10](2022/19): ⭐️⭐️
 - [x] [day 11](2022/11): ⭐️⭐️
 - [ ] day 12
 - [ ] day 13
