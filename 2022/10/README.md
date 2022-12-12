@@ -1,8 +1,8 @@
 # Answers
 
-| Part 1  | Part 2 |
-| ------- | ------ |
-| `11960` | `????` |
+| Part 1  | Part 2     |
+| ------- | ---------- |
+| `11960` | `EJCFPGLH` |
 
 ## --- Day 10: Cathode-Ray Tube ---
 

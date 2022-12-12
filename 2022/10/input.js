@@ -1,13 +1,15 @@
 const fs = require("fs");
 const path = require("path");
 
-const input = fs
+const inputRaw = fs
   .readFileSync(path.join(__dirname, "input.txt"), "utf-8")
   .toString()
   .trim()
-  .split("\n")
-  .map(str => str.startsWith("noop") ? null : Number(str.split(" ")[1]));
+  .split("\n");
+
+const input = inputRaw.map(str => str.startsWith("noop") ? null : Number(str.split(" ")[1]));
 
 module.exports = {
-  input
+  input,
+  inputRaw
 }

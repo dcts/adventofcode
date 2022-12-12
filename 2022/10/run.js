@@ -1,6 +1,8 @@
 const { input } = require("./input.js");
 
-// PART 1
+/**
+ *  PART 1
+ */ 
 
 // the following is a timeline of cycles (left) 
 // with the registerX values (right) at the START
@@ -55,10 +57,48 @@ for (let i=3; i<timeline.length; i++) {
 }
 const result = [20, 60, 100, 140, 180, 220].map(cycle => timeline[cycle] * cycle).reduce((a,b) => a+b, 0);
 
-
 console.log("=== AdventOfCode 2022-day10 ===");
 console.log("\npart_one:");
 console.log(result);
+
+
+
+
+/**
+ *  PART 2
+ */
 console.log("\npart_two: ")
-// console.log(result2); // @todo insert result part_two
+
+function draw(cycle, x, signals) {
+  const char = [x, x+1, x+2].includes(cycle % 40) ? "#" : ".";
+  process.stdout.write(char);
+
+  // check if current position is edge
+  if (cycle % 40 === 0) {
+    console.log(""); // newline
+  }
+  
+  if (((cycle-20) % 40) === 0 && !signals[cycle]) {
+    signals[cycle] = (cycle * x);
+  }
+}
+
+const signals = {};
+let x = 1;
+let cycle = 0;
+
+input.forEach(val => {
+  if (val === null) { // noop
+    cycle += 1;
+    draw(cycle, x, signals);
+
+  } else { // addx val
+    cycle += 1;
+    draw(cycle, x, signals);
+    cycle += 1;
+    draw(cycle, x, signals);
+    x += val;
+  }
+})
+
 console.log("\n\n");
