@@ -2,7 +2,7 @@ const year = "2022";
 const day = "12";
 
 const { input } = require(`./${year}/${day}/input.js`);
-
+const { Queue } = require(`./${year}/${day}/Queue.js`);
 
 function findStart(grid) {
   for (let r=0; r<grid.length; r++) {
@@ -19,6 +19,10 @@ function initMatrix(rows, cols, value) {
   return Array(rows).fill(0).map(() => Array(cols).fill(value));
 }
 
+// 🧪 TESTING
+// ✅ findNeighborPositions(grid, [0,0]) // => [0,1],[1,0]
+// ✅ findNeighborPositions(grid, [2,4]) // => [3,4],[1,4],[2,3],[2,5]
+// ✅ findNeighborPositions(grid, [3,7]) // => [2,7],[4,7],[3,6]
 function findNeighborPositions(grid, pos) {
   const rows = grid.length;
   const cols = grid[0].length;
@@ -40,10 +44,6 @@ function findNeighborPositions(grid, pos) {
   })
   return neighborPositions;
 }
-// 🧪 TESTING
-// ✅ findNeighborPositions(grid, [0,0]) // => [0,1],[1,0]
-// ✅ findNeighborPositions(grid, [2,4]) // => [3,4],[1,4],[2,3],[2,5]
-// ✅ findNeighborPositions(grid, [3,7]) // => [2,7],[4,7],[3,6]
 
 function char2num(char) {
   char = char === "S" ? "a" : char === "E" ? "z" : char;
@@ -74,17 +74,18 @@ const firstElement = {
   pos: [r, c],
   depth: 0,
 };
-const queue = [firstElement];
+const queue = new Queue();
+queue.enqueue(firstElement);
 let result = undefined;
-let count = 0;
-while (queue.length !== 0 && result === undefined && count < 10) {
-  count++;
-  const {pos, depth} = queue.shift();
+while (queue.length !== 0) {
+  const {pos, depth} = queue.dequeue(); // take item out of queue
+  if (visited[pos[0]][pos[1]]) { // exit if already visited node!
+    continue;
+  }
   const currentVal = grid[pos[0]][pos[1]];
-  console.log(`processing item with value ${currentVal} [${pos[0]} ${pos[1]}] - depth: ${depth}`);
 
   // mark visited
-  visited[r][c] = true;
+  visited[pos[0]][pos[1]] = true;
 
   // base case => end found
   if (currentVal === "E") {
@@ -94,12 +95,15 @@ while (queue.length !== 0 && result === undefined && count < 10) {
 
   // find all neighbors that are not visited and a valid path
   findValidNeighbors(grid, pos).forEach(validNeighborPos => {
-    if (!visited[validNeighborPos[0]][validNeighborPos[1]]) { // skip visited positions
-      queue.push({
+    const [neighborRow, neighborCol] = validNeighborPos;
+    const neighborNotVisited = !visited[neighborRow][neighborCol];
+    if (neighborNotVisited) { // skip visited positions
+      queue.enqueue({
         pos: validNeighborPos,
         depth: depth+1,
       })
     }
   })
 }
-// console.log({result});
+
+console.log({result});
