@@ -97,12 +97,35 @@ function copyToClipboard(str) {
   window.prompt("Copy to clipboard: Ctrl+C, Enter", str);
 }
 
+function splitResultStr(resultStr) {
+  try {
+    return resultStr.split("Your puzzle answer was ")[1].split(".")[0].trim();
+  } catch(err) {
+    return undefined;
+  }
+};
+function getYourResults() {
+  const resultStrings = Array.from(document.querySelectorAll("p"))
+    .map(p => p.textContent)
+    .filter(str => str.startsWith("Your puzzle answer was"));
+  const result1 = splitResultStr(resultStrings[0]) || "ANSWER1";
+  const result2 = splitResultStr(resultStrings[1]) || "ANSWER2";
+  return [result1, result2];
+};
+
 function extractTitle(fullTitle){
+  const [result1, result2] = getYourResults();
+  const reslen1 = Math.max(6, result1.toString().length + 2);
+  const reslen2 = Math.max(6, result2.toString().length + 2);
+  const residual1 = reslen1 - result1.toString().length - 2;
+  const residual2 = reslen2 - result2.toString().length - 2;
+  const dottedLines1 = "-".repeat(reslen1);
+  const dottedLines2 = "-".repeat(reslen2);
   return `# Answers
 
-| Part 1 | Part 2 |
-| ------ | ------ |
-| \`????\` | \`????\` |
+| ${"Part 1".padEnd(reslen1, " ")} | ${"Part 2".padEnd(reslen2, " ")} |
+| ${dottedLines1} | ${dottedLines2} |
+| \`${result1}\`${" ".repeat(residual1)} | \`${result2}\`${" ".repeat(residual2)} |
 
 ## ${fullTitle}`;
 }

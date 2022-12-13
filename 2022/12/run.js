@@ -1,5 +1,14 @@
 const { input } = require("./input.js");
 
+function initMatrix(rows, cols, value) {
+  return Array(rows).fill(0).map(() => Array(cols).fill(value));
+}
+
+function char2num(char) {
+  char = char === "S" ? "a" : char === "E" ? "z" : char;
+  return char.charCodeAt(0) - 96;
+}
+
 function findPositions(grid, chars) {
   const positions = [];
   for (let r=0; r<grid.length; r++) {
@@ -13,10 +22,6 @@ function findPositions(grid, chars) {
     throw new Error(`No positions with chars ${chars} found!`);
   }
   return positions;
-}
-
-function initMatrix(rows, cols, value) {
-  return Array(rows).fill(0).map(() => Array(cols).fill(value));
 }
 
 /**
@@ -48,11 +53,6 @@ function findNeighborPositions(grid, pos) {
     }
   })
   return neighborPositions;
-}
-
-function char2num(char) {
-  char = char === "S" ? "a" : char === "E" ? "z" : char;
-  return char.charCodeAt(0) - 96;
 }
 
 /**
