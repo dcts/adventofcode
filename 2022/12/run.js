@@ -132,6 +132,7 @@ const startingPosition = findPositions(grid, ["S"])[0]; // only 1 position label
 const result = shortestPath(grid, startingPosition);
 
 // PART 2
+// brute force apporach, not efficient.
 const startingPositions = findPositions(grid, ["S", "a"]);
 let result2 = Infinity;
 startingPositions.forEach(startingPosition => {
@@ -147,3 +148,16 @@ console.log(result);
 console.log("\npart_two: ")
 console.log(result2);
 console.log("\n\n");
+
+// better (more efficient) algorithm for part2 would be:
+//   1. find all starting positions
+//   2. sort starting positions by distance to END
+//   3. iterate over starting positions
+//   4. keep track of the trail (array with positions that lead to end)
+//   5. create hashmap for each position with the shortestPath (count) 
+//      from each position on the grid
+//   6. save all trail positions shortest path by iterating and decreasing
+//      the result by 1 each step.
+//   7. add a check for each queueElement to see if you know already
+//      the shortest path from the current position, if yes, no need 
+//      to run again
