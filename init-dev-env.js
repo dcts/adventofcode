@@ -40,20 +40,31 @@ function findNeighborPositions(grid, pos) {
   })
   return neighborPositions;
 }
+// 🧪 TESTING
+// ✅ findNeighborPositions(grid, [0,0]) // => [0,1],[1,0]
+// ✅ findNeighborPositions(grid, [2,4]) // => [3,4],[1,4],[2,3],[2,5]
+// ✅ findNeighborPositions(grid, [3,7]) // => [2,7],[4,7],[3,6]
 
 function char2num(char) {
   char = char === "S" ? "a" : char === "E" ? "z" : char;
   return char.charCodeAt(0) - 96;
 }
 
+// 🧪 TESTING
+// ✅ findValidNeighbors(grid, [0,0]) // => [0,1],[1,0]
+// ✅ findValidNeighbors(grid, [2,4]) // => [2,5]
+// ✅ findValidNeighbors(grid, [3,7]) // => [2,7]
 function findValidNeighbors(grid, pos) {
-  const [r, c] = pos;
-  const currentChar = grid[r][c];
+  const currentChar = grid[pos[0]][pos[1]];
   const currentVal = char2num(currentChar);
   // find all valid neighbors in the grid
   const neighborPositions = findNeighborPositions(grid, pos);
   // filter by valid combinations
-  return neighborPositions.filter(neighborPos => char2num(grid[neighborPos[0]][neighborPos[1]]) <= currentVal + 1);
+  return neighborPositions.filter(neighborPos => {
+    const neighborChar = grid[neighborPos[0]][neighborPos[1]];
+    const neighborVal = char2num(neighborChar);
+    return neighborVal <= currentVal + 1;
+  });
 }
 
 const grid = input;
@@ -66,11 +77,11 @@ const firstElement = {
 const queue = [firstElement];
 let result = undefined;
 let count = 0;
-while (queue.length !== 0 && result === undefined) { // && count < 10) {
+while (queue.length !== 0 && result === undefined && count < 10) {
   count++;
   const {pos, depth} = queue.shift();
   const currentVal = grid[pos[0]][pos[1]];
-  // console.log(`processing item with value ${currentVal} [${pos[0]} ${pos[1]}] - depth: ${depth}`);
+  console.log(`processing item with value ${currentVal} [${pos[0]} ${pos[1]}] - depth: ${depth}`);
 
   // mark visited
   visited[r][c] = true;
