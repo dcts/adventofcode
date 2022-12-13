@@ -2,7 +2,6 @@ const year = "2022";
 const day = "12";
 
 const { input } = require(`./${year}/${day}/input.js`);
-const { Queue } = require(`./${year}/${day}/Queue.js`);
 
 function findStart(grid) {
   for (let r=0; r<grid.length; r++) {
@@ -74,11 +73,10 @@ const firstElement = {
   pos: [r, c],
   depth: 0,
 };
-const queue = new Queue();
-queue.enqueue(firstElement);
+const queue = [firstElement];
 let result = undefined;
 while (queue.length !== 0) {
-  const {pos, depth} = queue.dequeue(); // take item out of queue
+  const {pos, depth} = queue.shift(); // take item out of queue
   if (visited[pos[0]][pos[1]]) { // exit if already visited node!
     continue;
   }
@@ -98,7 +96,7 @@ while (queue.length !== 0) {
     const [neighborRow, neighborCol] = validNeighborPos;
     const neighborNotVisited = !visited[neighborRow][neighborCol];
     if (neighborNotVisited) { // skip visited positions
-      queue.enqueue({
+      queue.push({
         pos: validNeighborPos,
         depth: depth+1,
       })
