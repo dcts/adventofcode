@@ -4,45 +4,39 @@ const day = "13";
 const { input } = require(`./${year}/${day}/input.js`);
 
 function compare(input1, input2) {
-  console.log(`\nRunning compare()\nInput1: ${input1}\nInput2: ${input2}`);
-  if (input1 === undefined) {
-    console.log("true");
-    return true; // left side ran out of elements, list is in order!
-  }
-  if (input2 === undefined) {
-    console.log("false");
-    return false; // right side ran out of elements, list is NOT in order!
-  }
-
-  // init flag
-  let inOrder = true;
+  if (input1 === undefined) return true;
+  if (input2 === undefined) return false;
 
   // base case: both are numbers
   if (typeof(input1) === "number" && typeof(input2) === "number") {
-    console.log(input1 <= input2);
     return input1 <= input2;
   }
 
   // adjust number to array
-  if (typeof(input1) === "number") {
-    input1 = [input1];
-  }
-  if (typeof(input2) === "number") {
-    input2 = [input2];
-  }
+  if (typeof(input1) === "number") return compare([input1], input2);
+  if (typeof(input2) === "number") return compare(input1, [input2]);
 
+  // 2 arrays:
+  if (!Array.isArray(input1) || !Array.isArray(input2)) {
+    throw new Error(`This should never happen. One input is not an array... \ninput1: ${input}\ninput2: ${input2}`);
+  }
+  
   // case2: 2 arrays
   const n = Math.max(input1.length, input2.length);
   for (let i=0; i<n; i++) {
-    const isInOrder = compare((input1[i] || -Infinity), input2[i]);
-    if (!isInOrder) {
-      console.log("false");
+    const res = compare(input1[i], input2[i]);
+    if (res === true && input1[i] < input2[i]) {
+      return true;
+    } 
+    if (res === true && input1[i] === input2[i]) {
+      continue;
+    }
+    if (res === false) {
       return false;
     }
   }
 
   // if all checks passed without flagging false, return true
-  console.log("true");
   return true;
 }
 
@@ -63,68 +57,10 @@ function compare(input1, input2) {
 const indicesInOrder = [];
 for (let i=1; i<=input.length; i++) {
   const [input1, input2] = input[i-1];
-  if (compare(input1, input2)) {
+  const res = compare(input1, input2);
+  if (res) {
     indicesInOrder.push(i);
   }
 }
-const result = indicesInOrder.reduce((a,b) => a*b, 1);
+const result = indicesInOrder.reduce((a,b) => a + b, 0);
 console.log({result});
-
-
-const cmp = (left, right) => {
-  let i = 0;
-  while (i < left.length && i < right.length) {
-    if (Number.isInteger(left[i]) && Number.isInteger(right[i])) {
-      if (left[i] == right[i]) {
-        i++;
-      } else {
-        return left[i] - right[i];
-      }
-    } else {
-      const recRes = cmp([left[i]].flat(), [right[i]].flat());
-      if (recRes == 0) {
-        i++;
-      } else {
-        return recRes;
-      }
-    }
-  }
-  return left.length - right.length;
-};
-
-const inOrder = (left, right) => {
-  return cmp(left, right) < 0;
-}
-
-// /**
-//  * returns true: if input1 > input2
-//  */
-// function isInOrder(input1, input2) {
-//   input1 = makeArray(input1);
-//   input2 = makeArray(input2);
-//   return compareArrays(input1, input2);
-// }
-
-// function makeArray(input) {
-//   return Array.isArray(input) ? input : [input];
-// }
-
-// /**
-//  * compareArrays()
-//  */
-// function compareArrays(arr1, arr2) {
-//   const maxLen = Math.max(arr1.length, arr2.length);
-//   for (let i=0; i<maxLen; i++) {
-//     const [el1, el2] = [arr1[i], arr2[i]];
-//     if (el1 === undefined) {
-//       return true;
-//     }
-//     if (el2 === undefined) {
-//       return false;
-//     }
-//     if (el1 > el2) {
-//       return false;
-//     }
-//   }
-//   return true;
-// }
