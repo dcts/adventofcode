@@ -1,18 +1,19 @@
 const fs = require("fs");
 const path = require("path");
 
-const input = {};
-fs.readFileSync(path.join(__dirname, "inputtest.txt"), "utf-8")
+const inputRaw = fs.readFileSync(path.join(__dirname, "input.txt"), "utf-8")
   .toString()
-  .trim()
-  .split("\n")
-  .forEach(line => {
+  .trim();
+  
+function process(inputRaw) {
+  const input = {};
+  inputRaw.split("\n").forEach(line => {
     const [left, right] = line.split(": ");
-    if (!/\*|\+|\/|\-/.test(right)) {
+    if (!/\*|\+|\/|\-/.test(right)) { // base case
       input[left] = {
         value: Number(right),
       }
-    } else {
+    } else { // nested case
       const parts = right.split(" ");
       input[left] = {
         left: parts[0],
@@ -21,7 +22,10 @@ fs.readFileSync(path.join(__dirname, "inputtest.txt"), "utf-8")
       };
     }
   })
+  return input;
+}
 
 module.exports = {
-  input
+  inputRaw,
+  process,
 }
