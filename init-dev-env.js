@@ -1,5 +1,4 @@
 const year = "2022";
-const day = "21";
+const day = "25";
 
-// const { input } = require(`./${year}/${day}/input.js`);
-const { inputRaw, process } = require(`./${year}/${day}/input.js`);
+const { input } = require(`./${year}/${day}/input.js`);
