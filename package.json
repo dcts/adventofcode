@@ -39,5 +39,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {
+    "algebra.js": "^0.2.6"
+  }
 }
