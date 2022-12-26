@@ -27,7 +27,7 @@ This is a repo containing my solutions to [Eric Wastl's](http://was.tl/) **Adven
 - [ ] day 18
 - [ ] day 19
 - [ ] day 20
-- [x] [day 21](2022/21): ⭐️
+- [x] [day 21](2022/21): ⭐️⭐️
 - [ ] day 22
 - [ ] day 23
 - [ ] day 24
