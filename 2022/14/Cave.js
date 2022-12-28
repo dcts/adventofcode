@@ -1,8 +1,10 @@
 class Cave {
   constructor() {
-    this.xDim = [undefined, undefined];
-    this.yDim = [undefined, undefined];
-    this.grid = [[]];
+    this.xMin = Infinity;
+    this.xMax = -Infinity;
+    this.yMin = Infinity;
+    this.yMax = -Infinity;
+    this.cave = [[]];
   }
 
   addRock(line) {
@@ -35,22 +37,24 @@ class Cave {
   }
 
   initCave(lines) {
-    const minX = undefined;
-    const maxX = undefined;
-    const minY = undefined;
-    const maxY = undefined;
     lines.forEach(line => {
       const parts = line.split(" -> ").map(pointStr => pointStr.split(",").map(strNum => Number(strNum)));
+      console.log({parts});
       parts.forEach(p => {
-        minX = Math.min(minX, p[0]);
-        maxX = Math.max(maxX, p[0]);
-        minY = Math.min(minY, p[1]);
-        maxY = Math.max(maxY, p[1]);
+        this.xMin = Math.min(this.xMin, p[0]);
+        this.xMax = Math.max(this.xMax, p[0]);
+        this.yMin = Math.min(this.yMin, p[1]);
+        this.yMax = Math.max(this.yMax, p[1]);
       })
     })
-    this.xDim = [minX, maxX];
-    this.yDim = [minY, maxY];
+    this.xSize = this.xMax - this.xMin;
+    this.ySize = this.yMax - this.yMin;
+    this.cave = new Array(ySize);
   }
+}
+
+function arrayFactory(size, value) {
+  return new Array(size).fill(0).map(() => value);
 }
 
 module.exports = {
