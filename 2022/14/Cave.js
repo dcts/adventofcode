@@ -70,30 +70,73 @@ class Cave {
   set(rowIndx, colIndx, value) {
     this.cave[rowIndx][this.indxTransformCol(colIndx)] = value;
   }
+  
+  getPosition(position) {
+    return this.get(position[0], position[1]);
+  }
+
+  get(rowIndx, colIndx) {
+    return this.cave[rowIndx][this.indxTransformCol(colIndx)];
+  }
 
   indxTransformCol(val) {
     return val - this.col.min;
   }
   
   print() {
-    console.log("");
+    console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     this.cave.forEach(row => {
       console.log(row.join(""));
     })
   }
 
   canFall(current) {
+    if (!this.isInBounds(current)) {
+      return false;
+    }
     const nextDown = this.next(current, "D");
     const nextDownLeft = this.next(current, "DL");
     const nextDownRight = this.next(current, "DR");
+    return (nextDown !== undefined || nextDownLeft !== undefined || nextDownRight !== undefined);
   }
 
-  pourSand() {
-    let current = [0, 500];
-    let stop = !this.canFall(current);
-    while(!stop) {
-      current = this.fall(current);
+  async pourSandMultiple() {
+    let end = false;
+    while(!end) {
+      await this.pourSand(true);
+      end = this.endReached();
     }
+    console.log("END REACHED");
+  }
+  async pourSand(visualize = false) {
+    let current = [0, 500];
+    let stop = false;
+    while(!stop) {
+      // console.log("inside while");
+      // console.log({stop});
+      // console.log({current});
+      current = this.fallDown(current);
+      stop = !this.canFall(current);
+      await sleep(50);
+      const [row, col] = current;
+      this.set(row, col, "o");
+      this.print();
+      this.set(row, col, ".");
+    }
+    // mark position 
+    const [row, col] = current;
+    this.set(row, col, "o");
+  }
+
+  // returns next of the fall
+  // returns undefined if cannot fall further
+  fallDown(current) {
+    // first check DOWN, DOWN-LEFT, DOWN-RIGHT
+    // (ordering matters)
+    const nextDown = this.next(current, "D");
+    const nextDownLeft = this.next(current, "DL");
+    const nextDownRight = this.next(current, "DR");
+    return nextDown || nextDownLeft || nextDownRight;
   }
 
   next(current, dir) {
@@ -105,23 +148,58 @@ class Cave {
     const nextPosition = [
       current[0] + offset[0],
       current[1] + offset[1],
-    ]
-    if (this.isValid(nextPosition)) {
+    ];
+    if (this.isInBounds(nextPosition) && !this.isBlocked(nextPosition)) {
       return nextPosition;
     }
     return undefined;
   }
 
+  isBlocked(position) {
+    const [row, col] = position;
+    const colTransformed = this.indxTransformCol(col);
+    return this.cave[row][colTransformed] !== ".";
+  }
+
   // checks if position is in bounds of the cave
   // return true or false
-  inBounds(position) {
+  isInBounds(position) {
+    if (!position) {
+      return false;
+    }
     const [row, col] = position;
+    const colOutOfBounds = col > this.col.max;
+    const rowOutOfBounds = row > this.row.max || row < 0;
+    return !colOutOfBounds && !rowOutOfBounds;
   }
+
+  endReached() {
+    const start = [0, 500];
+    const nextDown = this.next(start, "D");
+    const nextDownLeft = this.next(start, "DL");
+    const nextDownRight = this.next(start, "DR");
+    // console.log({nextDown, nextDownLeft, nextDownRight});
+    if (nextDown !== undefined && nextDownLeft !== undefined && nextDownRight !== undefined) {
+      const filledDown = this.getPosition(nextDown) === "o";
+      const filledDownLeft = this.getPosition(nextDownLeft) === "o";
+      const filledDownRight = this.getPosition(nextDownRight) === "o";
+      return filledDown && filledDownRight && filledDownLeft;
+    }
+    return true;
+  }
+
 }
 
 function arrayFactory(size, value) {
   return new Array(size).fill(0).map(() => value);
 }
+
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
 
 module.exports = {
   Cave
